@@ -1,0 +1,20 @@
+# sbt / build
+target/
+project/target/
+project/project/
+project/boot/
+
+# IDE / tooling
+.bsp/
+.metals/
+.bloop/
+.scala-build/
+.idea/
+.serena/
+*.class
+*.log
+
+# OS
+.DS_Store
+
+# note: generated/*.sv is intentionally tracked (config diff for portfolio)
