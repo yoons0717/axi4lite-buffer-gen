@@ -9,4 +9,8 @@ object Gen extends App {
     new Counter,
     Array("--target-dir", "generated")
   )
+  ChiselStage.emitSystemVerilogFile(
+    new SimpleFSM,
+    Array("--target-dir", "generated")
+  )
 }

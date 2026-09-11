@@ -18,6 +18,8 @@ project/boot/
 .DS_Store
 
 # note: generated/*.sv is intentionally tracked (config diff for portfolio)
+generated/filelist.f
+generated/verification/
 
 # Metals
 project/metals.sbt
