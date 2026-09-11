@@ -4,7 +4,7 @@ import chisel3._
   *  - en 이 1인 사이클마다 count 가 1 증가
   *  - 255 다음은 자연 오버플로로 0 (별도 wrap 로직 불필요)
   *
-  * 참고: docs/07-chisel-hands-on.md §2.2(Module/IO), §2.3(Reg), §2.5(when), §3
+  * 참고: docs/d05-chisel-basics-and-counter.md §2.1(Int/UInt), §2.6(Reg), §2.8(when), §3
   */
 class Counter extends Module {
   val io = IO(new Bundle {
