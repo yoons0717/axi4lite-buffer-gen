@@ -2,7 +2,9 @@ import chisel3._
 import chisel3.util._ 
 
 
-class ParametricFIFO(dataWidth: Int, depth: Int) extends Module {
+class ParametricFIFO(dataWidth: Int, val depth: Int) extends Module {
+    require(isPow2(depth), "depth must be power of 2")
+
     val io = IO(new Bundle {
         val dataIn = Input(UInt(dataWidth.W))
         val dataOut = Output(UInt(dataWidth.W))
@@ -40,7 +42,5 @@ class ParametricFIFO(dataWidth: Int, depth: Int) extends Module {
 
     io.full := (count === depth.U)
     io.empty := (count === 0.U)
-
-    require(isPow2(depth), "depth must be power of 2")
 
 }
