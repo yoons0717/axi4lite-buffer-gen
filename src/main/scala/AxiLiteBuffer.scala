@@ -2,6 +2,7 @@ import chisel3._
 import chisel3.util._
 
 object WState extends ChiselEnum { val W_IDLE, W_DATA, W_RESP = Value }
+object RState extends ChiselEnum { val R_IDLE, R_RESP = Value }
 
 class AxiLiteBuffer(c: AxiLiteConfig) extends Module {
   // AxiLiteIO는 master 기준 → 슬레이브는 전체를 한 번 더 뒤집음 (aw/w/ar 입력, b/r 출력)
@@ -53,6 +54,30 @@ class AxiLiteBuffer(c: AxiLiteConfig) extends Module {
         awDone := false.B
         wDone  := false.B
       }
+    }
+  }
+
+  // ---- read 경로 (D12) ----
+  // write와 독립된 별도 상태 레지스터로 병렬로 돈다. 레지스터 read가 조합이라
+  // W_DATA 같은 중간 단계 없이 AR 받은 다음 바로 응답 단계로 간다.
+  val rState = RegInit(RState.R_IDLE)
+  val arAddr = Reg(UInt(c.addrWidth.W))  // AR fire 시점 주소 래치
+
+  io.ar.ready := (rState === RState.R_IDLE)   // 상태로만 결정 (조합 루프 방지)
+  io.r.valid  := (rState === RState.R_RESP)
+
+  when (io.ar.fire) { arAddr := io.ar.bits.addr }
+
+  val (rIndex, rInRange) = decode(arAddr)
+  io.r.bits.data := Mux(rInRange, regs(rIndex), 0.U)  // 범위밖이면 0
+  io.r.bits.resp := Mux(rInRange, 0.U, 2.U)            // OKAY(0) / SLVERR(2)
+
+  switch (rState) {
+    is (RState.R_IDLE) {
+      when (io.ar.fire) { rState := RState.R_RESP }  // AR 하나만 받으면 바로 진행
+    }
+    is (RState.R_RESP) {
+      when (io.r.fire) { rState := RState.R_IDLE }  // 응답 받아갔으면 복귀
     }
   }
 }
