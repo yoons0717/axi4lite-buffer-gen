@@ -2,7 +2,7 @@
 
 Chisel로 만든 파라메트릭 하드웨어 제너레이터 모음. 같은 Scala 코드에서 파라미터(폭·깊이·레지스터 개수)만 바꿔 서로 다른 SystemVerilog를 생성하고, 시뮬레이션으로 검증합니다.
 
-`Counter` → `SimpleFSM` → `ParametricFIFO` → `AxiLiteBuffer` 순으로 점점 복잡한 회로를 구현했습니다. 그중 주요 구현은 [AXI4-Lite](https://developer.arm.com/documentation/ihi0022/latest/)(ARM AMBA 계열의 경량 레지스터 접근 프로토콜) 슬레이브 레지스터 버퍼입니다.
+`Counter` → `SimpleFSM` → `ParametricFIFO` → `AxiLiteBuffer` 순으로 점점 복잡한 회로를 구현했습니다. 그중 주요 구현은 [AXI4-Lite](https://support.arm.com/documentation/ihi0022/latest/)(ARM AMBA 계열의 경량 레지스터 접근 프로토콜) 슬레이브 레지스터 버퍼입니다.
 
 ## 구성 요소
 
