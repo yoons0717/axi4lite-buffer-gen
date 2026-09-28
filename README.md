@@ -4,6 +4,10 @@ Chisel로 만든 파라메트릭 하드웨어 제너레이터 모음. 같은 Sca
 
 `Counter` → `SimpleFSM` → `ParametricFIFO` → `AxiLiteBuffer` 순으로 점점 복잡한 회로를 구현했습니다. 그중 주요 구현은 [AXI4-Lite](https://support.arm.com/documentation/ihi0022/latest/)(ARM AMBA 계열의 경량 레지스터 접근 프로토콜) 슬레이브 레지스터 버퍼입니다.
 
+## 컴파일 파이프라인
+
+![Chisel 코드에서 SystemVerilog까지의 컴파일 파이프라인 — Chisel 코드(Scala) → elaboration 실행 → FIRRTL 중간표현 → CIRCT/firtool 컴파일 → SystemVerilog → Verilator 시뮬레이션·lint 검증](docs/pipeline.svg)
+
 ## 구성 요소
 
 | 모듈 | 설명 | 소스 | 테스트 |
