@@ -24,7 +24,7 @@ class AxiLiteBuffer(c: AxiLiteConfig) extends Module {
   val wData  = Reg(UInt(c.dataWidth.W)) // w 채널에서 받은 데이터를 저장하는 레지스터
   val wStrb  = Reg(UInt(c.strbWidth.W) )// w 채널에서 받은 스트로브를 저장하는 레지스터
 
-  // ready/valid는 상태로만 결정 (조합 루프 방지, d02 §4)
+  // ready/valid는 상태로만 결정 (조합 루프 방지)
   io.aw.ready := (wState === WState.W_IDLE) && !awDone
   io.w.ready  := (wState === WState.W_IDLE) && !wDone
   io.b.valid  := (wState === WState.W_RESP)
@@ -57,7 +57,7 @@ class AxiLiteBuffer(c: AxiLiteConfig) extends Module {
     }
   }
 
-  // ---- read 경로 (D12) ----
+  // ---- read 경로 ----
   // write와 독립된 별도 상태 레지스터로 병렬로 돈다. 레지스터 read가 조합이라
   // W_DATA 같은 중간 단계 없이 AR 받은 다음 바로 응답 단계로 간다.
   val rState = RegInit(RState.R_IDLE)

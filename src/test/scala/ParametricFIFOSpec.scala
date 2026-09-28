@@ -48,7 +48,7 @@ class ParametricFIFOSpec extends AnyFlatSpec {
     }
   }
 
-  it should "랜덤 push/pop을 참조 모델(mutable.Queue)과 대조한다 (STEP 14)" in {
+  it should "랜덤 push/pop을 참조 모델(mutable.Queue)과 대조한다" in {
     simulate(new ParametricFIFO(8, 4)) { c =>
       resetDut(c)
 
