@@ -9,7 +9,6 @@ case class AxiLiteConfig(addrWidth: Int = 32, dataWidth: Int = 32, numRegs: Int 
   val byteOffset   = log2Ceil(strbWidth)                 // 워드 내 오프셋 비트 (32→2, 64→3)
   val regIndexBits = log2Ceil(numRegs)                   // 레지스터 인덱스 비트
   val addrSpan     = numRegs * strbWidth                 // 매핑된 바이트 범위 [0, addrSpan)
-  
 }
 
 class AWPayload(c: AxiLiteConfig) extends Bundle {
@@ -17,23 +16,23 @@ class AWPayload(c: AxiLiteConfig) extends Bundle {
   val prot = UInt(3.W)
 }
 
-class WPayload (c: AxiLiteConfig) extends Bundle { 
-    val data = UInt(c.dataWidth.W); 
-    val strb = UInt(c.strbWidth.W)
+class WPayload(c: AxiLiteConfig) extends Bundle {
+  val data = UInt(c.dataWidth.W)
+  val strb = UInt(c.strbWidth.W)
 }
 
-class BPayload extends Bundle { 
-    val resp = UInt(2.W) 
+class BPayload extends Bundle {
+  val resp = UInt(2.W)
 }
 
-class ARPayload(c: AxiLiteConfig) extends Bundle { 
-    val addr = UInt(c.addrWidth.W); 
-    val prot = UInt(3.W) 
+class ARPayload(c: AxiLiteConfig) extends Bundle {
+  val addr = UInt(c.addrWidth.W)
+  val prot = UInt(3.W)
 }
 
-class RPayload (c: AxiLiteConfig) extends Bundle {
-    val data = UInt(c.dataWidth.W);
-    val resp = UInt(2.W)
+class RPayload(c: AxiLiteConfig) extends Bundle {
+  val data = UInt(c.dataWidth.W)
+  val resp = UInt(2.W)
 }
 
 class AxiLiteIO(c: AxiLiteConfig) extends Bundle {  // master 관점: valid를 내가 낼 때는 그대로, slave가 낼 땐 Flipped

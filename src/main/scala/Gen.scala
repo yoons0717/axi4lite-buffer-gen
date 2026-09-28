@@ -2,7 +2,7 @@ import circt.stage.ChiselStage
 
 /** SystemVerilog 생성 진입점.
   *  실행: sbt "runMain Gen"
-  *  결과: generated/Counter.sv
+  *  결과: generated/Counter.sv, generated/SimpleFSM.sv
   */
 object Gen extends App {
   ChiselStage.emitSystemVerilogFile(

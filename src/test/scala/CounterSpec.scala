@@ -12,7 +12,7 @@ class CounterSpec extends AnyFlatSpec {
     c.reset.poke(false.B)
   }
 
-  "Counter" should "count up by 1 each cycle while en is high" in {
+  "Counter" should "en이 1인 동안 매 사이클 1씩 증가한다" in {
     simulate(new Counter) { c =>
       resetDut(c)
 
@@ -22,7 +22,7 @@ class CounterSpec extends AnyFlatSpec {
     }
   }
 
-  it should "wrap around after 255 (8-bit overflow)" in {
+  it should "255 다음에 0으로 돌아간다 (8비트 오버플로)" in {
     simulate(new Counter) { c =>
       resetDut(c)
 

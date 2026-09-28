@@ -15,14 +15,13 @@ class ParametricFIFOSpec extends AnyFlatSpec {
 
   "ParametricFIFO" should "채우면 full이 된다" in {
     simulate(new ParametricFIFO(8, 4)) { c =>
-        resetDut(c)
+      resetDut(c)
 
-        for (i <- 0 until 4) {
-            c.io.push.poke(true.B)
-            c.clock.step(1)
-        }
-        c.io.full.expect(true.B)
-
+      for (_ <- 0 until 4) {
+        c.io.push.poke(true.B)
+        c.clock.step(1)
+      }
+      c.io.full.expect(true.B)
     }
   }
 

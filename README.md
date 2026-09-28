@@ -55,5 +55,5 @@ sbt "runMain GenFifo"          # ParametricFIFO 2 config → generated/fifo_w32_
 sbt "runMain GenAxiLiteBuffer" # AxiLiteBuffer 2 config → generated/axi_w32_n16, axi_w64_n64
 
 # 생성된 SV 린트
-verilator --lint-only -f generated/axi_w32_n16/filelist.f
+verilator --lint-only generated/axi_w32_n16/AxiLiteBuffer.sv
 ```

@@ -43,38 +43,38 @@
     `define INIT_RANDOM_PROLOG_
   `endif // RANDOMIZE
 `endif // not def INIT_RANDOM_PROLOG_
-module Counter(	// src/main/scala/Counter.scala:9:7
-  input        clock,	// src/main/scala/Counter.scala:9:7
-               reset,	// src/main/scala/Counter.scala:9:7
-               io_en,	// src/main/scala/Counter.scala:10:14
-  output [7:0] io_count	// src/main/scala/Counter.scala:10:14
+module Counter(	// src/main/scala/Counter.scala:7:7
+  input        clock,	// src/main/scala/Counter.scala:7:7
+               reset,	// src/main/scala/Counter.scala:7:7
+               io_en,	// src/main/scala/Counter.scala:8:14
+  output [7:0] io_count	// src/main/scala/Counter.scala:8:14
 );
 
-  reg [7:0] cnt;	// src/main/scala/Counter.scala:16:20
-  always @(posedge clock) begin	// src/main/scala/Counter.scala:9:7
-    if (reset)	// src/main/scala/Counter.scala:9:7
-      cnt <= 8'h0;	// src/main/scala/Counter.scala:16:20
-    else if (io_en)	// src/main/scala/Counter.scala:10:14
-      cnt <= cnt + 8'h1;	// src/main/scala/Counter.scala:16:20, :22:16
+  reg [7:0] cnt;	// src/main/scala/Counter.scala:13:20
+  always @(posedge clock) begin	// src/main/scala/Counter.scala:7:7
+    if (reset)	// src/main/scala/Counter.scala:7:7
+      cnt <= 8'h0;	// src/main/scala/Counter.scala:13:20
+    else if (io_en)	// src/main/scala/Counter.scala:8:14
+      cnt <= cnt + 8'h1;	// src/main/scala/Counter.scala:13:20, :16:16
   end // always @(posedge)
-  `ifdef ENABLE_INITIAL_REG_	// src/main/scala/Counter.scala:9:7
-    `ifdef FIRRTL_BEFORE_INITIAL	// src/main/scala/Counter.scala:9:7
-      `FIRRTL_BEFORE_INITIAL	// src/main/scala/Counter.scala:9:7
+  `ifdef ENABLE_INITIAL_REG_	// src/main/scala/Counter.scala:7:7
+    `ifdef FIRRTL_BEFORE_INITIAL	// src/main/scala/Counter.scala:7:7
+      `FIRRTL_BEFORE_INITIAL	// src/main/scala/Counter.scala:7:7
     `endif // FIRRTL_BEFORE_INITIAL
-    initial begin	// src/main/scala/Counter.scala:9:7
-      automatic logic [31:0] _RANDOM[0:0];	// src/main/scala/Counter.scala:9:7
-      `ifdef INIT_RANDOM_PROLOG_	// src/main/scala/Counter.scala:9:7
-        `INIT_RANDOM_PROLOG_	// src/main/scala/Counter.scala:9:7
+    initial begin	// src/main/scala/Counter.scala:7:7
+      automatic logic [31:0] _RANDOM[0:0];	// src/main/scala/Counter.scala:7:7
+      `ifdef INIT_RANDOM_PROLOG_	// src/main/scala/Counter.scala:7:7
+        `INIT_RANDOM_PROLOG_	// src/main/scala/Counter.scala:7:7
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// src/main/scala/Counter.scala:9:7
-        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;	// src/main/scala/Counter.scala:9:7
-        cnt = _RANDOM[/*Zero width*/ 1'b0][7:0];	// src/main/scala/Counter.scala:9:7, :16:20
+      `ifdef RANDOMIZE_REG_INIT	// src/main/scala/Counter.scala:7:7
+        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;	// src/main/scala/Counter.scala:7:7
+        cnt = _RANDOM[/*Zero width*/ 1'b0][7:0];	// src/main/scala/Counter.scala:7:7, :13:20
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// src/main/scala/Counter.scala:9:7
-      `FIRRTL_AFTER_INITIAL	// src/main/scala/Counter.scala:9:7
+    `ifdef FIRRTL_AFTER_INITIAL	// src/main/scala/Counter.scala:7:7
+      `FIRRTL_AFTER_INITIAL	// src/main/scala/Counter.scala:7:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  assign io_count = cnt;	// src/main/scala/Counter.scala:9:7, :16:20
+  assign io_count = cnt;	// src/main/scala/Counter.scala:7:7, :13:20
 endmodule
 

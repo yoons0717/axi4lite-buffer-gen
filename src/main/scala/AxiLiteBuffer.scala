@@ -20,9 +20,9 @@ class AxiLiteBuffer(c: AxiLiteConfig) extends Module {
   val wState = RegInit(WState.W_IDLE) // 현재 단계
   val awDone = RegInit(false.B) // aw 채널에서 valid를 받았는지 여부
   val wDone  = RegInit(false.B) // w 채널에서 valid를 받았는지 여부
-  val awAddr = Reg(UInt(c.addrWidth.W)) // aw 채널에서 받은 주소를 저장하는 레지스터 
+  val awAddr = Reg(UInt(c.addrWidth.W)) // aw 채널에서 받은 주소를 저장하는 레지스터
   val wData  = Reg(UInt(c.dataWidth.W)) // w 채널에서 받은 데이터를 저장하는 레지스터
-  val wStrb  = Reg(UInt(c.strbWidth.W) )// w 채널에서 받은 스트로브를 저장하는 레지스터
+  val wStrb  = Reg(UInt(c.strbWidth.W)) // w 채널에서 받은 스트로브를 저장하는 레지스터
 
   // ready/valid는 상태로만 결정 (조합 루프 방지)
   io.aw.ready := (wState === WState.W_IDLE) && !awDone

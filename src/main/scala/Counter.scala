@@ -12,8 +12,8 @@ class Counter extends Module {
 
   val cnt = RegInit(0.U(8.W))
 
-   when(io.en){
-    cnt := cnt +1.U
+  when (io.en) {
+    cnt := cnt + 1.U
   }
 
   io.count := cnt

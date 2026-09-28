@@ -43,44 +43,44 @@
     `define INIT_RANDOM_PROLOG_
   `endif // RANDOMIZE
 `endif // not def INIT_RANDOM_PROLOG_
-module SimpleFSM(	// src/main/scala/SimpleFSM.scala:13:7
-  input        clock,	// src/main/scala/SimpleFSM.scala:13:7
-               reset,	// src/main/scala/SimpleFSM.scala:13:7
-               io_start,	// src/main/scala/SimpleFSM.scala:14:14
-               io_rw,	// src/main/scala/SimpleFSM.scala:14:14
-  output       io_done,	// src/main/scala/SimpleFSM.scala:14:14
-  output [1:0] io_state	// src/main/scala/SimpleFSM.scala:14:14
+module SimpleFSM(	// src/main/scala/SimpleFSM.scala:11:7
+  input        clock,	// src/main/scala/SimpleFSM.scala:11:7
+               reset,	// src/main/scala/SimpleFSM.scala:11:7
+               io_start,	// src/main/scala/SimpleFSM.scala:12:14
+               io_rw,	// src/main/scala/SimpleFSM.scala:12:14
+  output       io_done,	// src/main/scala/SimpleFSM.scala:12:14
+  output [1:0] io_state	// src/main/scala/SimpleFSM.scala:12:14
 );
 
-  reg [1:0] state;	// src/main/scala/SimpleFSM.scala:21:22
-  always @(posedge clock) begin	// src/main/scala/SimpleFSM.scala:13:7
-    if (reset)	// src/main/scala/SimpleFSM.scala:13:7
-      state <= 2'h0;	// src/main/scala/SimpleFSM.scala:21:22, :31:13
-    else begin	// src/main/scala/SimpleFSM.scala:13:7
-      automatic logic [3:0][1:0] _GEN;	// src/main/scala/SimpleFSM.scala:21:22, :23:18, :25:23, :31:13
-      _GEN = {{state}, {2'h0}, {2'h0}, {io_start ? (io_rw ? 2'h2 : 2'h1) : state}};	// src/main/scala/SimpleFSM.scala:21:22, :23:18, :25:23, :26:{15,21}, :31:13, :35:22
-      state <= _GEN[state];	// src/main/scala/SimpleFSM.scala:21:22, :23:18, :25:23, :31:13
+  reg [1:0] state;	// src/main/scala/SimpleFSM.scala:19:22
+  always @(posedge clock) begin	// src/main/scala/SimpleFSM.scala:11:7
+    if (reset)	// src/main/scala/SimpleFSM.scala:11:7
+      state <= 2'h0;	// src/main/scala/SimpleFSM.scala:19:22, :29:13
+    else begin	// src/main/scala/SimpleFSM.scala:11:7
+      automatic logic [3:0][1:0] _GEN;	// src/main/scala/SimpleFSM.scala:19:22, :21:18, :23:23, :29:13
+      _GEN = {{state}, {2'h0}, {2'h0}, {io_start ? (io_rw ? 2'h2 : 2'h1) : state}};	// src/main/scala/SimpleFSM.scala:19:22, :21:18, :23:23, :24:{15,21}, :29:13, :33:22
+      state <= _GEN[state];	// src/main/scala/SimpleFSM.scala:19:22, :21:18, :23:23, :29:13
     end
   end // always @(posedge)
-  `ifdef ENABLE_INITIAL_REG_	// src/main/scala/SimpleFSM.scala:13:7
-    `ifdef FIRRTL_BEFORE_INITIAL	// src/main/scala/SimpleFSM.scala:13:7
-      `FIRRTL_BEFORE_INITIAL	// src/main/scala/SimpleFSM.scala:13:7
+  `ifdef ENABLE_INITIAL_REG_	// src/main/scala/SimpleFSM.scala:11:7
+    `ifdef FIRRTL_BEFORE_INITIAL	// src/main/scala/SimpleFSM.scala:11:7
+      `FIRRTL_BEFORE_INITIAL	// src/main/scala/SimpleFSM.scala:11:7
     `endif // FIRRTL_BEFORE_INITIAL
-    initial begin	// src/main/scala/SimpleFSM.scala:13:7
-      automatic logic [31:0] _RANDOM[0:0];	// src/main/scala/SimpleFSM.scala:13:7
-      `ifdef INIT_RANDOM_PROLOG_	// src/main/scala/SimpleFSM.scala:13:7
-        `INIT_RANDOM_PROLOG_	// src/main/scala/SimpleFSM.scala:13:7
+    initial begin	// src/main/scala/SimpleFSM.scala:11:7
+      automatic logic [31:0] _RANDOM[0:0];	// src/main/scala/SimpleFSM.scala:11:7
+      `ifdef INIT_RANDOM_PROLOG_	// src/main/scala/SimpleFSM.scala:11:7
+        `INIT_RANDOM_PROLOG_	// src/main/scala/SimpleFSM.scala:11:7
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// src/main/scala/SimpleFSM.scala:13:7
-        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;	// src/main/scala/SimpleFSM.scala:13:7
-        state = _RANDOM[/*Zero width*/ 1'b0][1:0];	// src/main/scala/SimpleFSM.scala:13:7, :21:22
+      `ifdef RANDOMIZE_REG_INIT	// src/main/scala/SimpleFSM.scala:11:7
+        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;	// src/main/scala/SimpleFSM.scala:11:7
+        state = _RANDOM[/*Zero width*/ 1'b0][1:0];	// src/main/scala/SimpleFSM.scala:11:7, :19:22
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// src/main/scala/SimpleFSM.scala:13:7
-      `FIRRTL_AFTER_INITIAL	// src/main/scala/SimpleFSM.scala:13:7
+    `ifdef FIRRTL_AFTER_INITIAL	// src/main/scala/SimpleFSM.scala:11:7
+      `FIRRTL_AFTER_INITIAL	// src/main/scala/SimpleFSM.scala:11:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  assign io_done = state == 2'h1 | state == 2'h2;	// src/main/scala/SimpleFSM.scala:13:7, :21:22, :26:21, :35:{22,35,45}
-  assign io_state = state;	// src/main/scala/SimpleFSM.scala:13:7, :21:22
+  assign io_done = state == 2'h1 | state == 2'h2;	// src/main/scala/SimpleFSM.scala:11:7, :19:22, :24:21, :33:{22,35,45}
+  assign io_state = state;	// src/main/scala/SimpleFSM.scala:11:7, :19:22
 endmodule
 

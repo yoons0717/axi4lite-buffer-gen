@@ -57,7 +57,7 @@
   `endif // RANDOMIZE
 `endif // not def INIT_RANDOM_PROLOG_
 // VCS coverage exclude_file
-module mem_64x64(	// src/main/scala/ParametricFIFO.scala:17:18
+module mem_64x64(	// src/main/scala/ParametricFIFO.scala:16:16
   input  [5:0]  R0_addr,
   input         R0_en,
                 R0_clk,
@@ -68,25 +68,25 @@ module mem_64x64(	// src/main/scala/ParametricFIFO.scala:17:18
   input  [63:0] W0_data
 );
 
-  reg [63:0] Memory[0:63];	// src/main/scala/ParametricFIFO.scala:17:18
-  always @(posedge W0_clk) begin	// src/main/scala/ParametricFIFO.scala:17:18
-    if (W0_en)	// src/main/scala/ParametricFIFO.scala:17:18
-      Memory[W0_addr] <= W0_data;	// src/main/scala/ParametricFIFO.scala:17:18
+  reg [63:0] Memory[0:63];	// src/main/scala/ParametricFIFO.scala:16:16
+  always @(posedge W0_clk) begin	// src/main/scala/ParametricFIFO.scala:16:16
+    if (W0_en)	// src/main/scala/ParametricFIFO.scala:16:16
+      Memory[W0_addr] <= W0_data;	// src/main/scala/ParametricFIFO.scala:16:16
   end // always @(posedge)
-  `ifdef ENABLE_INITIAL_MEM_	// src/main/scala/ParametricFIFO.scala:17:18
-    reg [63:0] _RANDOM_MEM;	// src/main/scala/ParametricFIFO.scala:17:18
-    initial begin	// src/main/scala/ParametricFIFO.scala:17:18
-      `INIT_RANDOM_PROLOG_	// src/main/scala/ParametricFIFO.scala:17:18
-      `ifdef RANDOMIZE_MEM_INIT	// src/main/scala/ParametricFIFO.scala:17:18
+  `ifdef ENABLE_INITIAL_MEM_	// src/main/scala/ParametricFIFO.scala:16:16
+    reg [63:0] _RANDOM_MEM;	// src/main/scala/ParametricFIFO.scala:16:16
+    initial begin	// src/main/scala/ParametricFIFO.scala:16:16
+      `INIT_RANDOM_PROLOG_	// src/main/scala/ParametricFIFO.scala:16:16
+      `ifdef RANDOMIZE_MEM_INIT	// src/main/scala/ParametricFIFO.scala:16:16
         for (logic [6:0] i = 7'h0; i < 7'h40; i += 7'h1) begin
           for (logic [6:0] j = 7'h0; j < 7'h40; j += 7'h20) begin
-            _RANDOM_MEM[j[5:0] +: 32] = `RANDOM;	// src/main/scala/ParametricFIFO.scala:17:18
+            _RANDOM_MEM[j[5:0] +: 32] = `RANDOM;	// src/main/scala/ParametricFIFO.scala:16:16
           end
-          Memory[i[5:0]] = _RANDOM_MEM;	// src/main/scala/ParametricFIFO.scala:17:18
+          Memory[i[5:0]] = _RANDOM_MEM;	// src/main/scala/ParametricFIFO.scala:16:16
         end
       `endif // RANDOMIZE_MEM_INIT
     end // initial
   `endif // ENABLE_INITIAL_MEM_
-  assign R0_data = R0_en ? Memory[R0_addr] : 64'bx;	// src/main/scala/ParametricFIFO.scala:17:18
+  assign R0_data = R0_en ? Memory[R0_addr] : 64'bx;	// src/main/scala/ParametricFIFO.scala:16:16
 endmodule
 

@@ -43,74 +43,74 @@
     `define INIT_RANDOM_PROLOG_
   `endif // RANDOMIZE
 `endif // not def INIT_RANDOM_PROLOG_
-module ParametricFIFO(	// src/main/scala/ParametricFIFO.scala:5:7
-  input         clock,	// src/main/scala/ParametricFIFO.scala:5:7
-                reset,	// src/main/scala/ParametricFIFO.scala:5:7
-  input  [31:0] io_dataIn,	// src/main/scala/ParametricFIFO.scala:8:16
-  output [31:0] io_dataOut,	// src/main/scala/ParametricFIFO.scala:8:16
-  input         io_push,	// src/main/scala/ParametricFIFO.scala:8:16
-                io_pop,	// src/main/scala/ParametricFIFO.scala:8:16
-  output        io_full,	// src/main/scala/ParametricFIFO.scala:8:16
-                io_empty	// src/main/scala/ParametricFIFO.scala:8:16
+module ParametricFIFO(	// src/main/scala/ParametricFIFO.scala:4:7
+  input         clock,	// src/main/scala/ParametricFIFO.scala:4:7
+                reset,	// src/main/scala/ParametricFIFO.scala:4:7
+  input  [31:0] io_dataIn,	// src/main/scala/ParametricFIFO.scala:7:14
+  output [31:0] io_dataOut,	// src/main/scala/ParametricFIFO.scala:7:14
+  input         io_push,	// src/main/scala/ParametricFIFO.scala:7:14
+                io_pop,	// src/main/scala/ParametricFIFO.scala:7:14
+  output        io_full,	// src/main/scala/ParametricFIFO.scala:7:14
+                io_empty	// src/main/scala/ParametricFIFO.scala:7:14
 );
 
-  wire       io_full_0;	// src/main/scala/ParametricFIFO.scala:43:23
-  reg  [3:0] writePtr;	// src/main/scala/ParametricFIFO.scala:18:27
-  reg  [3:0] readPtr;	// src/main/scala/ParametricFIFO.scala:19:26
-  reg  [4:0] count;	// src/main/scala/ParametricFIFO.scala:20:24
-  wire       doPush = io_push & ~io_full_0;	// src/main/scala/ParametricFIFO.scala:22:{26,29}, :43:23
-  assign io_full_0 = count == 5'h10;	// src/main/scala/ParametricFIFO.scala:20:24, :43:23
-  wire       _GEN = |count;	// src/main/scala/ParametricFIFO.scala:20:24, :44:24
-  always @(posedge clock) begin	// src/main/scala/ParametricFIFO.scala:5:7
-    if (reset) begin	// src/main/scala/ParametricFIFO.scala:5:7
-      writePtr <= 4'h0;	// src/main/scala/ParametricFIFO.scala:18:27
-      readPtr <= 4'h0;	// src/main/scala/ParametricFIFO.scala:18:27, :19:26
-      count <= 5'h0;	// src/main/scala/ParametricFIFO.scala:20:24
+  wire       io_full_0;	// src/main/scala/ParametricFIFO.scala:41:22
+  reg  [3:0] writePtr;	// src/main/scala/ParametricFIFO.scala:17:25
+  reg  [3:0] readPtr;	// src/main/scala/ParametricFIFO.scala:18:25
+  reg  [4:0] count;	// src/main/scala/ParametricFIFO.scala:19:25
+  wire       doPush = io_push & ~io_full_0;	// src/main/scala/ParametricFIFO.scala:21:{24,27}, :41:22
+  assign io_full_0 = count == 5'h10;	// src/main/scala/ParametricFIFO.scala:19:25, :41:22
+  wire       _GEN = |count;	// src/main/scala/ParametricFIFO.scala:19:25, :42:22
+  always @(posedge clock) begin	// src/main/scala/ParametricFIFO.scala:4:7
+    if (reset) begin	// src/main/scala/ParametricFIFO.scala:4:7
+      writePtr <= 4'h0;	// src/main/scala/ParametricFIFO.scala:17:25
+      readPtr <= 4'h0;	// src/main/scala/ParametricFIFO.scala:17:25, :18:25
+      count <= 5'h0;	// src/main/scala/ParametricFIFO.scala:19:25
     end
-    else begin	// src/main/scala/ParametricFIFO.scala:5:7
-      automatic logic doPop;	// src/main/scala/ParametricFIFO.scala:23:25
-      doPop = io_pop & _GEN;	// src/main/scala/ParametricFIFO.scala:23:25, :44:24
-      if (doPush)	// src/main/scala/ParametricFIFO.scala:22:26
-        writePtr <= writePtr + 4'h1;	// src/main/scala/ParametricFIFO.scala:18:27, :28:30
-      if (doPop)	// src/main/scala/ParametricFIFO.scala:23:25
-        readPtr <= readPtr + 4'h1;	// src/main/scala/ParametricFIFO.scala:19:26, :32:28
-      if (doPush & ~doPop)	// src/main/scala/ParametricFIFO.scala:22:26, :23:25, :35:{17,20}
-        count <= count + 5'h1;	// src/main/scala/ParametricFIFO.scala:20:24, :36:24
-      else if (doPop & ~doPush)	// src/main/scala/ParametricFIFO.scala:22:26, :23:25, :37:{23,26}
-        count <= count - 5'h1;	// src/main/scala/ParametricFIFO.scala:20:24, :38:24
+    else begin	// src/main/scala/ParametricFIFO.scala:4:7
+      automatic logic doPop;	// src/main/scala/ParametricFIFO.scala:22:23
+      doPop = io_pop & _GEN;	// src/main/scala/ParametricFIFO.scala:22:23, :42:22
+      if (doPush)	// src/main/scala/ParametricFIFO.scala:21:24
+        writePtr <= writePtr + 4'h1;	// src/main/scala/ParametricFIFO.scala:17:25, :26:26
+      if (doPop)	// src/main/scala/ParametricFIFO.scala:22:23
+        readPtr <= readPtr + 4'h1;	// src/main/scala/ParametricFIFO.scala:18:25, :30:24
+      if (doPush & ~doPop)	// src/main/scala/ParametricFIFO.scala:21:24, :22:23, :33:{15,18}
+        count <= count + 5'h1;	// src/main/scala/ParametricFIFO.scala:19:25, :34:20
+      else if (doPop & ~doPush)	// src/main/scala/ParametricFIFO.scala:21:24, :22:23, :35:{21,24}
+        count <= count - 5'h1;	// src/main/scala/ParametricFIFO.scala:19:25, :36:20
     end
   end // always @(posedge)
-  `ifdef ENABLE_INITIAL_REG_	// src/main/scala/ParametricFIFO.scala:5:7
-    `ifdef FIRRTL_BEFORE_INITIAL	// src/main/scala/ParametricFIFO.scala:5:7
-      `FIRRTL_BEFORE_INITIAL	// src/main/scala/ParametricFIFO.scala:5:7
+  `ifdef ENABLE_INITIAL_REG_	// src/main/scala/ParametricFIFO.scala:4:7
+    `ifdef FIRRTL_BEFORE_INITIAL	// src/main/scala/ParametricFIFO.scala:4:7
+      `FIRRTL_BEFORE_INITIAL	// src/main/scala/ParametricFIFO.scala:4:7
     `endif // FIRRTL_BEFORE_INITIAL
-    initial begin	// src/main/scala/ParametricFIFO.scala:5:7
-      automatic logic [31:0] _RANDOM[0:0];	// src/main/scala/ParametricFIFO.scala:5:7
-      `ifdef INIT_RANDOM_PROLOG_	// src/main/scala/ParametricFIFO.scala:5:7
-        `INIT_RANDOM_PROLOG_	// src/main/scala/ParametricFIFO.scala:5:7
+    initial begin	// src/main/scala/ParametricFIFO.scala:4:7
+      automatic logic [31:0] _RANDOM[0:0];	// src/main/scala/ParametricFIFO.scala:4:7
+      `ifdef INIT_RANDOM_PROLOG_	// src/main/scala/ParametricFIFO.scala:4:7
+        `INIT_RANDOM_PROLOG_	// src/main/scala/ParametricFIFO.scala:4:7
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// src/main/scala/ParametricFIFO.scala:5:7
-        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;	// src/main/scala/ParametricFIFO.scala:5:7
-        writePtr = _RANDOM[/*Zero width*/ 1'b0][3:0];	// src/main/scala/ParametricFIFO.scala:5:7, :18:27
-        readPtr = _RANDOM[/*Zero width*/ 1'b0][7:4];	// src/main/scala/ParametricFIFO.scala:5:7, :18:27, :19:26
-        count = _RANDOM[/*Zero width*/ 1'b0][12:8];	// src/main/scala/ParametricFIFO.scala:5:7, :18:27, :20:24
+      `ifdef RANDOMIZE_REG_INIT	// src/main/scala/ParametricFIFO.scala:4:7
+        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;	// src/main/scala/ParametricFIFO.scala:4:7
+        writePtr = _RANDOM[/*Zero width*/ 1'b0][3:0];	// src/main/scala/ParametricFIFO.scala:4:7, :17:25
+        readPtr = _RANDOM[/*Zero width*/ 1'b0][7:4];	// src/main/scala/ParametricFIFO.scala:4:7, :17:25, :18:25
+        count = _RANDOM[/*Zero width*/ 1'b0][12:8];	// src/main/scala/ParametricFIFO.scala:4:7, :17:25, :19:25
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// src/main/scala/ParametricFIFO.scala:5:7
-      `FIRRTL_AFTER_INITIAL	// src/main/scala/ParametricFIFO.scala:5:7
+    `ifdef FIRRTL_AFTER_INITIAL	// src/main/scala/ParametricFIFO.scala:4:7
+      `FIRRTL_AFTER_INITIAL	// src/main/scala/ParametricFIFO.scala:4:7
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  mem_16x32 mem_ext (	// src/main/scala/ParametricFIFO.scala:17:18
-    .R0_addr (readPtr),	// src/main/scala/ParametricFIFO.scala:19:26
-    .R0_en   (1'h1),	// src/main/scala/ParametricFIFO.scala:5:7
+  mem_16x32 mem_ext (	// src/main/scala/ParametricFIFO.scala:16:16
+    .R0_addr (readPtr),	// src/main/scala/ParametricFIFO.scala:18:25
+    .R0_en   (1'h1),	// src/main/scala/ParametricFIFO.scala:4:7
     .R0_clk  (clock),
     .R0_data (io_dataOut),
-    .W0_addr (writePtr),	// src/main/scala/ParametricFIFO.scala:18:27
-    .W0_en   (doPush),	// src/main/scala/ParametricFIFO.scala:22:26
+    .W0_addr (writePtr),	// src/main/scala/ParametricFIFO.scala:17:25
+    .W0_en   (doPush),	// src/main/scala/ParametricFIFO.scala:21:24
     .W0_clk  (clock),
     .W0_data (io_dataIn)
-  );	// src/main/scala/ParametricFIFO.scala:17:18
-  assign io_full = io_full_0;	// src/main/scala/ParametricFIFO.scala:5:7, :43:23
-  assign io_empty = ~_GEN;	// src/main/scala/ParametricFIFO.scala:5:7, :44:24
+  );	// src/main/scala/ParametricFIFO.scala:16:16
+  assign io_full = io_full_0;	// src/main/scala/ParametricFIFO.scala:4:7, :41:22
+  assign io_empty = ~_GEN;	// src/main/scala/ParametricFIFO.scala:4:7, :42:22
 endmodule
 
